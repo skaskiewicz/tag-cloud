@@ -3,13 +3,14 @@
 <head>
     <title>Tag cloud</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="engine/all.min.css">
-    <link rel="stylesheet" href="engine/w3.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./engine/addons.css" type="text/css">
+    <link rel="stylesheet" href="./engine/w3.css" type="text/css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div id="home">
-    <div id="cloud_tags" class="w3-container w3-padding-small w3-light-gray">
+    <div id="cloud_tags" class="w3-container w3-padding-small w3-light-gray sticky">
         <input type="checkbox" class="w3-check">
         <label class="w3-tag w3-blue">tagi</label>
         <input type="checkbox" class="w3-check">
@@ -33,7 +34,7 @@
     </div>
     <div id="top" class="w3-container w3-padding-16">
         <input type="file" id="file" name="file" accept="text/csv"/>
-        <button class="w3-button w3-green"><i class="fa fa-file-circle-plus"></i> Add from file</button>
+        <button class="w3-button w3-green"><i class="fa-solid fa-file-circle-plus"></i> Add from file</button>
     </div>
     <div id="list" class="w3-cell-row">
         <div id="head_number" class="w3-container w3-cell">
@@ -56,7 +57,8 @@
         </div>
     </div>
     <hr>
-        <div id="number" class="w3-container w3-cell">
+    <div>
+        <div id="number" class="w3-container w3-cell w3-cell-middle">
             <span class="w3-badge">1</span>
         </div>
         <div id="description" class="w3-container w3-cell">
@@ -78,108 +80,185 @@
         <div id="delete" class="w3-container w3-cell w3-cell-middle">
             <button class="w3-button w3-block w3-red"><i class="fa fa-trash"></i> Delete</button>
         </div>
+        <hr>
     </div>
-    <hr>
-    <div id="list2" class="w3-cell-row">
-        <div id="number2" class="w3-container w3-cell">
-            <span class="w3-badge">2</span>
+    <div>
+        <div id="number" class="w3-container w3-cell w3-cell-middle">
+            <span class="w3-badge">1</span>
         </div>
-        <div id="description2" class="w3-container w3-cell">
+        <div id="description" class="w3-container w3-cell">
             opis lorem ipsum opis długi i nudządzy ale bywają jeszcze dłuższe
         </div>
-        <div id="url2" class="w3-container w3-cell w3-cell-middle">
+        <div id="url" class="w3-container w3-cell w3-cell-middle">
             url tutaj teżdługi ale zapewne dam radę go zwinąć w linka tak aby nie był długi
         </div>
-        <div id="tags2" class="w3-container w3-cell w3-cell-middle">
+        <div id="tags" class="w3-container w3-cell w3-cell-middle">
             <span class="w3-tag w3-blue">tagi</span>
             <span class="w3-tag w3-red">tagi</span>
             <span class="w3-tag w3-green">tagi</span>
             <span class="w3-tag w3-yellow">tagi</span>
             <span class="w3-tag w3-orange">tagi</span>
         </div>
-        <div id="edit2" class="w3-container w3-cell w3-cell-middle">
-            <button class="w3-button w3-block w3-green">Edit</button>
+        <div id="edit" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-green"><i class="fa fa-pencil"></i> Edit</button>
         </div>
-        <div id="delete2" class="w3-container w3-cell w3-cell-middle">
-            <button class="w3-button w3-block w3-red">Delete</button>
+        <div id="delete" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-red"><i class="fa fa-trash"></i> Delete</button>
         </div>
+        <hr>
     </div>
-    <hr>
-    <div id="list2" class="w3-cell-row">
-        <div id="number2" class="w3-container w3-cell">
-            <span class="w3-badge">2</span>
+    <div>
+        <div id="number" class="w3-container w3-cell w3-cell-middle">
+            <span class="w3-badge">1</span>
         </div>
-        <div id="description2" class="w3-container w3-cell">
+        <div id="description" class="w3-container w3-cell">
             opis lorem ipsum opis długi i nudządzy ale bywają jeszcze dłuższe
         </div>
-        <div id="url2" class="w3-container w3-cell w3-cell-middle">
+        <div id="url" class="w3-container w3-cell w3-cell-middle">
             url tutaj teżdługi ale zapewne dam radę go zwinąć w linka tak aby nie był długi
         </div>
-        <div id="tags2" class="w3-container w3-cell w3-cell-middle">
+        <div id="tags" class="w3-container w3-cell w3-cell-middle">
             <span class="w3-tag w3-blue">tagi</span>
             <span class="w3-tag w3-red">tagi</span>
             <span class="w3-tag w3-green">tagi</span>
             <span class="w3-tag w3-yellow">tagi</span>
             <span class="w3-tag w3-orange">tagi</span>
         </div>
-        <div id="edit2" class="w3-container w3-cell w3-cell-middle">
-            <button class="w3-button w3-block w3-green">Edit</button>
+        <div id="edit" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-green"><i class="fa fa-pencil"></i> Edit</button>
         </div>
-        <div id="delete2" class="w3-container w3-cell w3-cell-middle">
-            <button class="w3-button w3-block w3-red">Delete</button>
+        <div id="delete" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-red"><i class="fa fa-trash"></i> Delete</button>
         </div>
+        <hr>
     </div>
-    <hr>
-    <div id="list2" class="w3-cell-row">
-        <div id="number2" class="w3-container w3-cell">
-            <span class="w3-badge">2</span>
+    <div>
+        <div id="number" class="w3-container w3-cell w3-cell-middle">
+            <span class="w3-badge">1</span>
         </div>
-        <div id="description2" class="w3-container w3-cell">
+        <div id="description" class="w3-container w3-cell">
             opis lorem ipsum opis długi i nudządzy ale bywają jeszcze dłuższe
         </div>
-        <div id="url2" class="w3-container w3-cell w3-cell-middle">
+        <div id="url" class="w3-container w3-cell w3-cell-middle">
             url tutaj teżdługi ale zapewne dam radę go zwinąć w linka tak aby nie był długi
         </div>
-        <div id="tags2" class="w3-container w3-cell w3-cell-middle">
+        <div id="tags" class="w3-container w3-cell w3-cell-middle">
             <span class="w3-tag w3-blue">tagi</span>
             <span class="w3-tag w3-red">tagi</span>
             <span class="w3-tag w3-green">tagi</span>
             <span class="w3-tag w3-yellow">tagi</span>
             <span class="w3-tag w3-orange">tagi</span>
         </div>
-        <div id="edit2" class="w3-container w3-cell w3-cell-middle">
-            <button class="w3-button w3-block w3-green">Edit</button>
+        <div id="edit" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-green"><i class="fa fa-pencil"></i> Edit</button>
         </div>
-        <div id="delete2" class="w3-container w3-cell w3-cell-middle">
-            <button class="w3-button w3-block w3-red">Delete</button>
+        <div id="delete" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-red"><i class="fa fa-trash"></i> Delete</button>
         </div>
+        <hr>
     </div>
-    <hr>
-    <div id="list2" class="w3-cell-row">
-        <div id="number2" class="w3-container w3-cell">
-            <span class="w3-badge">2</span>
+    <div>
+        <div id="number" class="w3-container w3-cell w3-cell-middle">
+            <span class="w3-badge">1</span>
         </div>
-        <div id="description2" class="w3-container w3-cell">
+        <div id="description" class="w3-container w3-cell">
             opis lorem ipsum opis długi i nudządzy ale bywają jeszcze dłuższe
         </div>
-        <div id="url2" class="w3-container w3-cell w3-cell-middle">
+        <div id="url" class="w3-container w3-cell w3-cell-middle">
             url tutaj teżdługi ale zapewne dam radę go zwinąć w linka tak aby nie był długi
         </div>
-        <div id="tags2" class="w3-container w3-cell w3-cell-middle">
+        <div id="tags" class="w3-container w3-cell w3-cell-middle">
             <span class="w3-tag w3-blue">tagi</span>
             <span class="w3-tag w3-red">tagi</span>
             <span class="w3-tag w3-green">tagi</span>
             <span class="w3-tag w3-yellow">tagi</span>
             <span class="w3-tag w3-orange">tagi</span>
         </div>
-        <div id="edit2" class="w3-container w3-cell w3-cell-middle">
-            <button class="w3-button w3-block w3-green">Edit</button>
+        <div id="edit" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-green"><i class="fa fa-pencil"></i> Edit</button>
         </div>
-        <div id="delete2" class="w3-container w3-cell w3-cell-middle">
-            <button class="w3-button w3-block w3-red">Delete</button>
+        <div id="delete" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-red"><i class="fa fa-trash"></i> Delete</button>
         </div>
+        <hr>
     </div>
-    <hr>
+    <div>
+        <div id="number" class="w3-container w3-cell w3-cell-middle">
+            <span class="w3-badge">1</span>
+        </div>
+        <div id="description" class="w3-container w3-cell">
+            opis lorem ipsum opis długi i nudządzy ale bywają jeszcze dłuższe
+        </div>
+        <div id="url" class="w3-container w3-cell w3-cell-middle">
+            url tutaj teżdługi ale zapewne dam radę go zwinąć w linka tak aby nie był długi
+        </div>
+        <div id="tags" class="w3-container w3-cell w3-cell-middle">
+            <span class="w3-tag w3-blue">tagi</span>
+            <span class="w3-tag w3-red">tagi</span>
+            <span class="w3-tag w3-green">tagi</span>
+            <span class="w3-tag w3-yellow">tagi</span>
+            <span class="w3-tag w3-orange">tagi</span>
+        </div>
+        <div id="edit" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-green"><i class="fa fa-pencil"></i> Edit</button>
+        </div>
+        <div id="delete" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-red"><i class="fa fa-trash"></i> Delete</button>
+        </div>
+        <hr>
+    </div>
+    <div>
+        <div id="number" class="w3-container w3-cell w3-cell-middle">
+            <span class="w3-badge">1</span>
+        </div>
+        <div id="description" class="w3-container w3-cell">
+            opis lorem ipsum opis długi i nudządzy ale bywają jeszcze dłuższe
+        </div>
+        <div id="url" class="w3-container w3-cell w3-cell-middle">
+            url tutaj teżdługi ale zapewne dam radę go zwinąć w linka tak aby nie był długi
+        </div>
+        <div id="tags" class="w3-container w3-cell w3-cell-middle">
+            <span class="w3-tag w3-blue">tagi</span>
+            <span class="w3-tag w3-red">tagi</span>
+            <span class="w3-tag w3-green">tagi</span>
+            <span class="w3-tag w3-yellow">tagi</span>
+            <span class="w3-tag w3-orange">tagi</span>
+        </div>
+        <div id="edit" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-green"><i class="fa fa-pencil"></i> Edit</button>
+        </div>
+        <div id="delete" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-red"><i class="fa fa-trash"></i> Delete</button>
+        </div>
+        <hr>
+    </div>
+    <div>
+        <div id="number" class="w3-container w3-cell w3-cell-middle">
+            <span class="w3-badge">1</span>
+        </div>
+        <div id="description" class="w3-container w3-cell">
+            opis lorem ipsum opis długi i nudządzy ale bywają jeszcze dłuższe
+        </div>
+        <div id="url" class="w3-container w3-cell w3-cell-middle">
+            url tutaj teżdługi ale zapewne dam radę go zwinąć w linka tak aby nie był długi
+        </div>
+        <div id="tags" class="w3-container w3-cell w3-cell-middle">
+            <span class="w3-tag w3-blue">tagi</span>
+            <span class="w3-tag w3-red">tagi</span>
+            <span class="w3-tag w3-green">tagi</span>
+            <span class="w3-tag w3-yellow">tagi</span>
+            <span class="w3-tag w3-orange">tagi</span>
+        </div>
+        <div id="edit" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-green"><i class="fa fa-pencil"></i> Edit</button>
+        </div>
+        <div id="delete" class="w3-container w3-cell w3-cell-middle">
+            <button class="w3-button w3-block w3-red"><i class="fa fa-trash"></i> Delete</button>
+        </div>
+        <hr>
+    </div>
+
+
     <div id="pagination" class="w3-container">paginacja</div>
     <div id="footer" class="w3-container">stopka</div>
 </div>
