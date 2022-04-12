@@ -11,6 +11,7 @@ function connect($config)
     return $db;
 }
 //function to get data from database
+//TODO poprawić zapytanie do bazy danych lub eksporu z bazy tak aby wyświeltło wszystkie dane dotyczące tagów dla danego wpisu
 $sql = "SELECT * FROM tags_main join main m on m.id_main = tags_main.id_main join tags t on t.id_tags = tags_main.id_tags";
 function get_data($db, $sql)
 {
