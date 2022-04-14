@@ -73,8 +73,5 @@ function read_csv($file, $env_array)
     }
     fclose($file);
 }
-
-
 //read_csv('import.csv', $env_array);
-print_table(get_data(connect($env_array), $sql));
 ?>
