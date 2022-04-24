@@ -13,7 +13,9 @@ function connect($env_array)
 }
 
 //function to get data from database
-$sql = "select id_main, description, url, tags, checked from main";
+/*
+ * add preapre sql query
+ */
 function get_data($db, $sql)
 {
     $result = $db->query($sql);
@@ -28,40 +30,47 @@ function get_data($db, $sql)
 }
 
 //print html table with data from database
-function print_table($data)
+function print_table($data, $colour_array): void
 {
-    $i = 1;
-    echo "<table>";
-    echo "<tr><th>ID</th><th>Description</th><th>Tags</th><th>Viewev/Readed</th></tr>";
+    //$i = 1;
+    echo "<table class='w3-table-all' style='width: 100%'>";
+    echo "<tr>
+            <!--<th class='w3-center' style='width: 2%'>ID</th>-->
+            <th class='w3-center' style='width: 60%'>Description</th>
+            <th class='w3-center' style='width: 30%'>Tags</th>
+            <th class='w3-center' style='width: 8%'>Viewed/<br>Readed</th>
+        </tr>";
     foreach ($data as $row) {
         echo "<tr>";
-        echo "<td>" . $i . "</td>";
-        echo "<td><a href='" . $row['url'] . "' target='_blank'>" . $row['description'] . "</a></td>";
+        /*echo "<td class='w3-center'>" . $i . "</td>";*/
+        echo "<td><a href='" . $row['url'] . "'_target='_blank'>" . $row['description'] . "</a></td>";
         echo "<td>";
         foreach (split_tags($row['tags']) as $tag) {
-            echo $tag . " ";
+            echo "<span class='w3-tag " . $colour_array[random_int(0, count($colour_array) - 1)] . "'>" . $tag . "</span> ";
         }
         echo "</td>";
-        echo "<td><input type='checkbox' ";
+        echo "<td class='w3-center'><input type='checkbox' ";
         if ($row['checked'] == 1) {
             echo "checked";
         };
         echo "></td>";
+        /*echo "<td class='w3-center'><button>Edit</button></td>";
+        echo "<td class='w3-center'><button>Delete</button></td>";*/
         echo "</tr>";
-        $i++;
+        //$i++;
     }
     echo "</table>";
 }
 
 //function splitting tags by #
-function split_tags($tags)
+function split_tags($tags): array
 {
     $tags = explode("#", $tags);
     return $tags;
 }
 
 //function reading csv file and inserting data to database
-function read_csv($file, $env_array)
+function read_csv($file, $env_array): void
 {
     $file = fopen($file, "r");
     $db = connect($env_array);
@@ -73,5 +82,25 @@ function read_csv($file, $env_array)
     }
     fclose($file);
 }
+
+//function printing tags from database into table
+function print_tags($db, $colour_array): void
+{
+    $sql = "select tags from main";
+    $data = get_data($db, $sql);
+    $tags = array();
+    foreach ($data as $row) {
+        foreach (split_tags($row['tags']) as $tag) {
+            $tags[] = $tag;
+        }
+    }
+    $tags = array_unique($tags);
+    sort($tags);
+    foreach ($tags as $tag) {
+        echo "<span style='display: inline-block'><input id='" . $tag . "' type='checkbox' checked class='w3-check'>";
+        echo "<label for='" . $tag . "' class='w3-tag " . $colour_array[random_int(0, count($colour_array) - 1)] . "'>" . $tag . "</label></span> ";
+    }
+}
+
 //read_csv('import.csv', $env_array);
 ?>
