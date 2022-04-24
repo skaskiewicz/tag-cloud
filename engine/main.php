@@ -65,8 +65,7 @@ function print_table($data, $colour_array): void
 //function splitting tags by #
 function split_tags($tags): array
 {
-    $tags = explode("#", $tags);
-    return $tags;
+    return explode("#", $tags);
 }
 
 //function reading csv file and inserting data to database
@@ -95,7 +94,7 @@ function print_tags($db, $colour_array): void
         }
     }
     $tags = array_unique($tags);
-    sort($tags);
+    natcasesort($tags);
     foreach ($tags as $tag) {
         echo "<span style='display: inline-block'><input id='" . $tag . "' type='checkbox' checked class='w3-check'>";
         echo "<label for='" . $tag . "' class='w3-tag " . $colour_array[random_int(0, count($colour_array) - 1)] . "'>" . $tag . "</label></span> ";
