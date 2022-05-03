@@ -12,40 +12,20 @@ require_once('./engine/env.php');
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="./engine/w3.css" type="text/css"/>
-    <style>
-        div.sticky {
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }
-        .top {
-            --offset: 50px;
-
-            position: sticky;
-            bottom: 10px;
-            margin-left: 90%;
-            place-self: end;
-            margin-top: calc(100vh + var(--offset));
-
-            /* visual styling */
-            text-decoration: none;
-            padding: 10px;
-            font-family: sans-serif;
-            color: #fff;
-            background: #000;
-            white-space: nowrap;
-        }
-    </style>
 </head>
 <body>
 <div id="home">
-    <div id="cloud_tags" class="w3-container w3-padding-small w3-light-gray sticky">
-        <?php
-        print_tags(connect($env_array), $colour_array);
-        ?>
+    <div id="top" class="sticky">
+        <div id="cloud_tags" class="w3-container w3-padding-small w3-light-gray w3-show sticky">
+            <?php
+            print_tags(connect($env_array), $colour_array);
+            ?>
+        </div>
+        <div id="button_show_hide" class="w3-container w3-right sticky">
+            <button id="show_hide" class="w3-button w3-black" onclick="showHide()">Show/Hide tags</button>
+        </div>
     </div>
-    <div id="top" class="w3-container w3-padding-16">
+    <div id="add_file" class="w3-container w3-padding-16">
         <input type="file" id="file" name="file" accept="text/csv"/>
         <button class="w3-button w3-green"><i class="fa-solid fa-file-circle-plus"></i> Add from file</button>
     </div>
@@ -61,6 +41,6 @@ require_once('./engine/env.php');
     -->
     <a href="#" class="top">&nbsp;&nbsp;<i class="fa-solid fa-angles-up"></i>&nbsp;&nbsp;</a>
 </div>
-
+<script src="./engine/main.js"></script>
 </body>
 </html>
