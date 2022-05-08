@@ -88,7 +88,7 @@ function read_csv($file, $env_array): array
         //check if url exists in database. if not, insert it
         if (!search_in_array($url, $urls, 'url')) {
             //TODO: ustalić kolejność kolumn w pliku csv (zapewne: tags;description;url)
-            $sql = "insert into main (tags, description, url, checked) values ('" . $line[0] . "', '" . $line[1] . "', '" . preg_replace("/\/$/", "", $line[2]) . "', '0')";
+            $sql = "insert into main (tags, description, url, checked) values ('" . strtolower($line[0]) . "', '" . $line[1] . "', '" . preg_replace("/\/$/", "", $line[2]) . "', '0')";
             $db->query($sql);
         } else {
             //else, add url to array for future alert
@@ -112,7 +112,7 @@ function print_tags($db, $colour_array): void
         }
     }
     $tags = array_unique($tags);
-    sort($tags);
+    natcasesort($tags);
     foreach ($tags as $tag) {
         echo "<span style='display: inline-block'><input id='" . $tag . "' type='checkbox' checked class='w3-check'>";
         echo "<label for='" . $tag . "' class='w3-tag " . $colour_array[random_int(0, count($colour_array) - 1)] . "'>" . $tag . "</label></span> ";
@@ -140,5 +140,5 @@ function search_in_array($search, $array, $field, $case_insensitive = true): boo
     //if not found, return false
     return false;
 }
-read_csv('import.csv', $env_array);
+//read_csv('import.csv', $env_array);
 ?>
