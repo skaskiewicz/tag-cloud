@@ -13,9 +13,6 @@ function connect($env_array)
 }
 
 //function to get data from database
-/*
- * add preapre sql query
- */
 function get_data($db, $sql)
 {
     $result = $db->query($sql);
@@ -52,7 +49,7 @@ function print_table($data, $colour_array): void
         echo "<td class='w3-center'><input type='checkbox' ";
         if ($row['checked'] == 1) {
             echo "checked";
-        };
+        }
         echo "></td>";
         /*echo "<td class='w3-center'><button>Edit</button></td>";
         echo "<td class='w3-center'><button>Delete</button></td>";*/
@@ -65,22 +62,42 @@ function print_table($data, $colour_array): void
 //function splitting tags by #
 function split_tags($tags): array
 {
-    $tags = explode("#", $tags);
-    return $tags;
+    return explode("#", $tags);
 }
 
 //function reading csv file and inserting data to database
-function read_csv($file, $env_array): void
+//TODO: add array for mapping columns from csv file to database
+function read_csv($file, $env_array): array
 {
+    //open file
     $file = fopen($file, "r");
     $db = connect($env_array);
+    $sql_url = "SELECT url FROM main";
+    //get urls from database
+    $urls = get_data($db, $sql_url);
+    //delete unnecessary characters from urls in database
+    for ($i = 0; $i < count($urls); $i++) {
+        $urls[$i]['url'] = preg_replace("/^(http(s)?:\/\/|ftp(s)?:\/\/)?(www\.)?/i", "", $urls[$i]['url']);
+    }
+    //array for existing urls from file
+    $url_exist = array();
     while (!feof($file)) {
         $line = fgetcsv($file, 0, ";");
-        //TODO: ustalić kolejność kolumn w pliku csv (zapewne: tags;description;url)
-        $sql = "insert into main (tags, description, url, checked) values ('" . $line[0] . "', '" . $line[1] . "', '" . $line[2] . "', '0')";
-        $db->query($sql);
+        //delete unnecessary characters from url before check if it exists in database
+        $url = preg_replace("/^(http(s)?:\/\/|ftp(s)?:\/\/)?(www\.)?/i", "", preg_replace("/\/$/", "", $line[2]));
+        //check if url exists in database. if not, insert it
+        if (!search_in_array($url, $urls, 'url')) {
+            //TODO: ustalić kolejność kolumn w pliku csv (zapewne: tags;description;url)
+            $sql = "insert into main (tags, description, url, checked) values ('" . $line[0] . "', '" . $line[1] . "', '" . preg_replace("/\/$/", "", $line[2]) . "', '0')";
+            $db->query($sql);
+        } else {
+            //else, add url to array for future alert
+            $url_exist[] = $url;
+        }
     }
     fclose($file);
+    //return array with urls that exists in database
+    return $url_exist;
 }
 
 //function printing tags from database into table
@@ -102,5 +119,26 @@ function print_tags($db, $colour_array): void
     }
 }
 
-//read_csv('import.csv', $env_array);
+//serach in multidimensional array with case insensitive/sensitive search
+function search_in_array($search, $array, $field, $case_insensitive = true): bool
+{
+    foreach ($array as $key => $value) {
+        //if case insensitive search, convert to lowercase
+        if ($case_insensitive) {
+            if (strtolower($value[$field]) == strtolower($search)) {
+                //if found, return true
+                return true;
+            }
+        } else {
+            //else, search as is
+            if ($value[$field] == $search) {
+                //if found, return true
+                return true;
+            }
+        }
+    }
+    //if not found, return false
+    return false;
+}
+read_csv('import.csv', $env_array);
 ?>
