@@ -25,7 +25,7 @@ require_once('./engine/env.php');
             <button id="button_show_hide" class="w3-button w3-light-gray" onclick="show_hide()">Show/Hide tag list</button>
         </div>
         <div id="div_show_tags" class="w3-container w3-right sticky">
-            <button id="button_show_hide_tags" class="w3-button w3-light-gray" onclick="show_hide_tags()">Show/Hide all tags</button>
+            <button id="button_show_hide_tags" class="w3-button w3-light-gray" onclick="show_hide_tags('hide')">Show/Hide all tags</button>
         </div>
     </div>
     <div id="add_file" class="w3-container w3-padding-16">

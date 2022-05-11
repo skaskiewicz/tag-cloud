@@ -4,7 +4,7 @@ function filter_tag(c) {
     x = document.getElementsByClassName("filterTag");
     for (i = 0; i < x.length; i++) {
         arr1 = x[i].className.split(" ");
-        if (arr1.indexOf(c) > -1 && arr1.indexOf("hideTag") == -1) {
+        if (arr1.indexOf(c) > -1 && arr1.indexOf("hideTag") === -1) {
             x[i].className += " hideTag";
         } else {
             x[i].classList.remove("hideTag");
@@ -27,26 +27,36 @@ function show_hide() {
 //end of function for show/hide top navbar with tags
 
 //function for show/hide all tags
-function show_hide_tags(C) {
-    let x, y, z, i, arr1;
-    x = document.getElementsByClassName("filterTag");
-    y = document.getElementsByClassName("w3-check");
-    if (c == "show") {
-        for (i = 0; i < x.length; i++) {
-            arr1 = x[i].className.split(" ");
+function show_hide_tags(c) {
+    let x, y, arr1;
+    x = document.getElementsByClassName("w3-check-tag");
+    y = document.getElementsByClassName("filterTag");
+    if (c === "show") {
+        for (i = 0; i < y.length; i++) {
+            arr1 = y[i].className.split(" ");
             if (arr1.indexOf("hideTag") > -1) {
-                x[i].classList.remove("hideTag");
+                y[i].classList.remove("hideTag");
             }
-            y[i].checked = true;
         }
-    } else {
         for (i = 0; i < x.length; i++) {
-            arr1 = x[i].className.split(" ");
-            if (arr1.indexOf("hideTag") == -1) {
-                x[i].className += " hideTag"
-            }
-            y[i].checked = false;
+            x[i].checked = true;
         }
+        document.getElementById("button_show_hide_tags").setAttribute("onclick", "show_hide_tags('hide')");
+    }
+    else if (c === "hide") {
+        for (i = 0; i < y.length; i++) {
+            arr1 = y[i].className.split(" ");
+            if (arr1.indexOf("hideTag") === -1) {
+                y[i].className += " hideTag";
+            }
+        }
+        for (i = 0; i < x.length; i++) {
+            x[i].checked = false;
+        }
+        document.getElementById("button_show_hide_tags").setAttribute("onclick", "show_hide_tags('show')");
+    }
+    else {
+        console.log("error");
     }
 }
 //end of function for show/hide all tags

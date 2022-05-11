@@ -50,7 +50,7 @@ function print_table($data, $colour_array): void
             echo "<span class='w3-tag " . $colour_array[random_int(0, count($colour_array) - 1)] . "'>" . $tag . "</span> ";
         }
         echo "</td>";
-        echo "<td class='w3-center'><input type='checkbox' ";
+        echo "<td class='w3-center'><input type='checkbox' class='w3-check' ";
         if ($row['checked'] == 1) {
             echo "checked";
         }
@@ -118,7 +118,7 @@ function print_tags($db, $colour_array): void
     $tags = array_unique($tags);
     natcasesort($tags);
     foreach ($tags as $tag) {
-        echo "<span style='display: inline-block'><input id='" . $tag . "' type='checkbox' checked class='w3-check' onclick=\"filter_tag('" . $tag . "')\">";
+        echo "<span style='display: inline-block'><input id='" . $tag . "' type='checkbox' checked class='w3-check-tag' onclick=\"filter_tag('" . $tag . "')\">";
         echo "<label for='" . $tag . "' class='w3-tag " . $colour_array[random_int(0, count($colour_array) - 1)] . "'>" . $tag . "</label></span> ";
     }
 }
