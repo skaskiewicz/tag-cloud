@@ -21,8 +21,11 @@ require_once('./engine/env.php');
             print_tags(connect($env_array), $colour_array);
             ?>
         </div>
-        <div id="button_show_hide" class="w3-container w3-right sticky">
-            <button id="show_hide" class="w3-button w3-black" onclick="showHide()">Show/Hide tags</button>
+        <div id="div_button_show_hide" class="w3-container w3-right sticky">
+            <button id="button_show_hide" class="w3-button w3-light-gray" onclick="show_hide()">Show/Hide tag list</button>
+        </div>
+        <div id="div_show_tags" class="w3-container w3-right sticky">
+            <button id="button_show_hide_tags" class="w3-button w3-light-gray" onclick="show_hide_tags()">Show/Hide all tags</button>
         </div>
     </div>
     <div id="add_file" class="w3-container w3-padding-16">

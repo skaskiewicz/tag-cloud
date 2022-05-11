@@ -256,13 +256,17 @@ div.sticky {
     background: #000;
     white-space: nowrap;
 }
-.filterDiv {
-    float: left;
+tr.filterTag {
+    /*float: left;
     background-color: #2196F3;
     color: #ffffff;
     width: 100px;
     line-height: 100px;
     text-align: center;
     margin: 2px;
-    display: none;
+    display: none;*/
+    visibility: visible;
+}
+tr.hideTag {
+    visibility: collapse;
 }
