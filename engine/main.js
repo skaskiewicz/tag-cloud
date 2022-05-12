@@ -1,14 +1,34 @@
 //section for show/hide selected tags
-function filter_tag(c) {
-    let x, y, i, arr1, arr2;
+function filter_tag(c, d) {
+    let x, y, arr1;
+    //get all rows from table
     x = document.getElementsByClassName("filterTag");
-    for (i = 0; i < x.length; i++) {
-        arr1 = x[i].className.split(" ");
-        if (arr1.indexOf(c) > -1 && arr1.indexOf("hideTag") === -1) {
-            x[i].className += " hideTag";
-        } else {
-            x[i].classList.remove("hideTag");
+    //get all tags
+    y = document.getElementsByClassName("w3-check-tag");
+    if (d === "hide") {
+        for (let i = 0; i < x.length; i++) {
+            //separate tags in i row
+            arr1 = x[i].className.split(" ");
+            //check if tag is in row and hideTag is not true then hide row
+            if (arr1.indexOf(c) > -1 && arr1.indexOf("hideTag") === -1) {
+                x[i].className += " hideTag";
+            }
         }
+        //change action in selected checkbox
+        document.getElementById(c).setAttribute("onclick", "filter_tag('" + c + "', 'show')");
+    } else if (d === "show") {
+        for (let i = 0; i < x.length; i++) {
+            //separate tags in i row
+            arr1 = x[i].className.split(" ");
+            //check if tag is in row and hideTag is false then show row
+            if (arr1.indexOf(c) > -1 && arr1.indexOf("hideTag") > -1) {
+                x[i].classList.remove("hideTag");
+            }
+        }
+        //change action in selected checkbox
+        document.getElementById(c).setAttribute("onclick", "filter_tag('" + c + "', 'hide')");
+    } else {
+        console.log("error");
     }
 }
 
@@ -29,34 +49,45 @@ function show_hide() {
 //function for show/hide all tags
 function show_hide_tags(c) {
     let x, y, arr1;
+    //get all tags
     x = document.getElementsByClassName("w3-check-tag");
+    //get all rows from table
     y = document.getElementsByClassName("filterTag");
     if (c === "show") {
-        for (i = 0; i < y.length; i++) {
+        for (let i = 0; i < y.length; i++) {
+            //separate tags in i row
             arr1 = y[i].className.split(" ");
+            //check if hideTag is true then show row
             if (arr1.indexOf("hideTag") > -1) {
                 y[i].classList.remove("hideTag");
             }
         }
-        for (i = 0; i < x.length; i++) {
+        //change action in selected checkbox and check it
+        for (let i = 0; i < x.length; i++) {
             x[i].checked = true;
+            document.getElementById(x[i].id).setAttribute("onclick", "filter_tag('" + x[i].id + "', 'hide')");
         }
+        //change action on button for show/hide all tags
         document.getElementById("button_show_hide_tags").setAttribute("onclick", "show_hide_tags('hide')");
-    }
-    else if (c === "hide") {
-        for (i = 0; i < y.length; i++) {
+    } else if (c === "hide") {
+        for (let i = 0; i < y.length; i++) {
+            //separate tags in i row
             arr1 = y[i].className.split(" ");
+            //check if hideTag is false then hide row
             if (arr1.indexOf("hideTag") === -1) {
                 y[i].className += " hideTag";
             }
         }
-        for (i = 0; i < x.length; i++) {
+        //change action in selected checkbox and uncheck it
+        for (let i = 0; i < x.length; i++) {
             x[i].checked = false;
+            document.getElementById(x[i].id).setAttribute("onclick", "filter_tag('" + x[i].id + "', 'show')");
         }
+        //change action on button for show/hide all tags
         document.getElementById("button_show_hide_tags").setAttribute("onclick", "show_hide_tags('show')");
-    }
-    else {
+    } else {
         console.log("error");
     }
 }
+
 //end of function for show/hide all tags

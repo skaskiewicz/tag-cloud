@@ -118,7 +118,7 @@ function print_tags($db, $colour_array): void
     $tags = array_unique($tags);
     natcasesort($tags);
     foreach ($tags as $tag) {
-        echo "<span style='display: inline-block'><input id='" . $tag . "' type='checkbox' checked class='w3-check-tag' onclick=\"filter_tag('" . $tag . "')\">";
+        echo "<span style='display: inline-block'><input id='" . $tag . "' type='checkbox' checked class='w3-check-tag' onclick=\"filter_tag('" . $tag . "', 'hide')\">";
         echo "<label for='" . $tag . "' class='w3-tag " . $colour_array[random_int(0, count($colour_array) - 1)] . "'>" . $tag . "</label></span> ";
     }
 }
