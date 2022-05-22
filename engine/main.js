@@ -37,10 +37,13 @@ function filter_tag(c, d) {
 //function for show/hide top navbar with tags
 function show_hide() {
     let x = document.getElementById("cloud_tags");
+    let y = document.getElementById("button_show_hide");
     if (x.className === "w3-container w3-padding-small w3-light-gray sticky w3-hide") {
         x.className = "w3-container w3-padding-small w3-light-gray sticky w3-show";
+        y.innerHTML = "<i class=\"fa-solid fa-eye-slash\"></i> Hide tag list";
     } else {
         x.className = "w3-container w3-padding-small w3-light-gray sticky w3-hide";
+        y.innerHTML = "<i class=\"fa-solid fa-eye\"></i> Show tag list";
     }
 }
 
@@ -48,11 +51,12 @@ function show_hide() {
 
 //function for show/hide all tags
 function show_hide_tags(c) {
-    let x, y, arr1;
+    let x, y, z, arr1;
     //get all tags
     x = document.getElementsByClassName("w3-check-tag");
     //get all rows from table
     y = document.getElementsByClassName("filterTag");
+    z = document.getElementById("button_show_hide_tags");
     if (c === "show") {
         for (let i = 0; i < y.length; i++) {
             //separate tags in i row
@@ -68,7 +72,8 @@ function show_hide_tags(c) {
             document.getElementById(x[i].id).setAttribute("onclick", "filter_tag('" + x[i].id + "', 'hide')");
         }
         //change action on button for show/hide all tags
-        document.getElementById("button_show_hide_tags").setAttribute("onclick", "show_hide_tags('hide')");
+        z.setAttribute("onclick", "show_hide_tags('hide')");
+        z.innerHTML = "<i class=\"fa-solid fa-eye-slash\"></i> Hide all tags";
     } else if (c === "hide") {
         for (let i = 0; i < y.length; i++) {
             //separate tags in i row
@@ -84,7 +89,8 @@ function show_hide_tags(c) {
             document.getElementById(x[i].id).setAttribute("onclick", "filter_tag('" + x[i].id + "', 'show')");
         }
         //change action on button for show/hide all tags
-        document.getElementById("button_show_hide_tags").setAttribute("onclick", "show_hide_tags('show')");
+        z.setAttribute("onclick", "show_hide_tags('show')");
+        z.innerHTML = "<i class=\"fa-solid fa-eye\"></i> Show all tags";
     } else {
         console.log("error");
     }
