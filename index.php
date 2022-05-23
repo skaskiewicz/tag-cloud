@@ -1,6 +1,15 @@
 <?php
 require_once('./engine/main.php');
 require_once('./engine/env.php');
+//check if user open page with good token
+if (!isset($_GET['pass'])) {
+    header("Location: https://google.pl");
+}
+else {
+    if ($_GET['pass'] != $env_array['token']) {
+        header("Location: https://google.pl");
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>

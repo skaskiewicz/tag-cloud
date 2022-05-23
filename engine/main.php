@@ -76,22 +76,23 @@ function read_csv($file, $env_array): array
     //open file
     $file = fopen($file, "r");
     $db = connect($env_array);
+    //select existing urls from database for checking duplicates in csv file
     $sql_url = "SELECT url FROM main";
-    //get urls from database
     $urls = get_data($db, $sql_url);
-    //delete unnecessary characters from urls in database
+    //delete unnecessary characters from urls in database. all http://, https:// and ftp:// will be deleted
     for ($i = 0; $i < count($urls); $i++) {
         $urls[$i]['url'] = preg_replace("/^(http(s)?:\/\/|ftp(s)?:\/\/)?(www\.)?/i", "", $urls[$i]['url']);
     }
-    //array for existing urls from file
+    //array for storing url if is duplicate
     $url_exist = array();
     while (!feof($file)) {
         $line = fgetcsv($file, 0, ";");
-        //delete unnecessary characters from url before check if it exists in database
+        //delete unnecessary characters from url before check if it exists in database. all http://, https:// and ftp:// will be deleted. also last / will be deleted
         $url = preg_replace("/^(http(s)?:\/\/|ftp(s)?:\/\/)?(www\.)?/i", "", preg_replace("/\/$/", "", $line[2]));
         //check if url exists in database. if not, insert it
         if (!search_in_array($url, $urls, 'url')) {
-            //TODO: ustalić kolejność kolumn w pliku csv (zapewne: tags;description;url)
+            //TODO: ustalić kolejność kolumn w pliku csv (zapewne: tags;description;url). tak samo usuwać z tagów pierwszego # aby nie musieć robić tego w pliku
+            //insert data to database. delete last / from url
             $sql = "insert into main (tags, description, url, checked) values ('" . strtolower($line[0]) . "', '" . $line[1] . "', '" . preg_replace("/\/$/", "", $line[2]) . "', '0')";
             $db->query($sql);
         } else {
@@ -144,5 +145,6 @@ function search_in_array($search, $array, $field, $case_insensitive = true): boo
     //if not found, return false
     return false;
 }
+
 //read_csv('import.csv', $env_array);
 ?>
