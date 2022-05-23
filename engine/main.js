@@ -37,13 +37,12 @@ function filter_tag(c, d) {
 //function for show/hide top navbar with tags
 function show_hide() {
     let x = document.getElementById("cloud_tags");
-    let y = document.getElementById("button_show_hide");
     if (x.className === "w3-container w3-padding-small w3-light-gray sticky w3-hide") {
         x.className = "w3-container w3-padding-small w3-light-gray sticky w3-show";
-        y.innerHTML = "<i class=\"fa-solid fa-eye-slash\"></i> Hide tag list";
+        document.getElementById("button_show_hide").innerHTML = "<i class=\"fa-solid fa-eye-slash\"></i> Hide tag list";
     } else {
         x.className = "w3-container w3-padding-small w3-light-gray sticky w3-hide";
-        y.innerHTML = "<i class=\"fa-solid fa-eye\"></i> Show tag list";
+        document.getElementById("button_show_hide").innerHTML = "<i class=\"fa-solid fa-eye\"></i> Show tag list";
     }
 }
 
