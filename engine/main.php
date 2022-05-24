@@ -30,8 +30,8 @@ function get_data($db, $sql)
 function print_table($data, $colour_array): void
 {
     $i = 1;
-    echo "<table class='w3-table-all' style='width: 100%'>";
-    echo "<tr>
+    echo "<table class='w3-table w3-hoverable w3-bordered' style='width: 100%'>";
+    echo "<tr class='w3-light-gray'>
             <th class='w3-center' style='width: 2%'>ID</th>
             <th class='w3-center' style='width: 60%'>Description</th>
             <th class='w3-center' style='width: 30%'>Tags</th>
@@ -93,7 +93,7 @@ function read_csv($file, $env_array): array
         if (!search_in_array($url, $urls, 'url')) {
             //TODO: ustalić kolejność kolumn w pliku csv (zapewne: tags;description;url). tak samo usuwać z tagów pierwszego # aby nie musieć robić tego w pliku
             //insert data to database. delete last / from url
-            $sql = "insert into main (tags, description, url, checked) values ('" . strtolower($line[0]) . "', '" . $line[1] . "', '" . preg_replace("/\/$/", "", $line[2]) . "', '0')";
+            $sql = "insert into main (tags, description, url, checked) values ('" . substr_replace(strtolower($line[0]), "", 0, 1) . "', '" . $line[1] . "', '" . preg_replace("/\/$/", "", $line[2]) . "', '0')";
             $db->query($sql);
         } else {
             //else, add url to array for future alert

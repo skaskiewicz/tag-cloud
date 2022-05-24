@@ -23,8 +23,8 @@ else {
     <link rel="stylesheet" href="./engine/w3.css" type="text/css"/>
 </head>
 <body>
-<div id="home">
-    <div id="top" class="sticky">
+<div id="home_site">
+    <div id="top_site" class="sticky">
         <div id="cloud_tags" class="w3-container w3-padding-small w3-light-gray w3-show sticky">
             <?php
             print_tags(connect($env_array), $colour_array);
